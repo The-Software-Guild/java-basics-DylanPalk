@@ -6,7 +6,6 @@ public class NewGame {
     public static void main(String[] args) {
         runnable();
     }
-
     private static void repeatGame(String x){
         if(x.equals("yes")){
             runnable();
@@ -15,7 +14,6 @@ public class NewGame {
             System.out.println("Thanks for playing");
         }
     }
-
     private static void runnable(){
         Scanner grabAction = new Scanner(System.in);
         Random rand = new Random();
@@ -43,24 +41,24 @@ public class NewGame {
 
         for(int i = 0;i<rounds;i++){
             System.out.println("Player 1: Rock, Paper or Scissors?");
-            int action1 = grabAction.nextInt();
+            int playerGuess = grabAction.nextInt();
 
             while(isValid == false){
-                if(action1 >= 0 && action1 <= 2){
+                if(playerGuess >= 0 && playerGuess <= 2){
                     isValid = true;
                 }
                 else{
                     System.out.println("Please Enter a number between 0-2");
-                    action1 = grabAction.nextInt();
+                    playerGuess = grabAction.nextInt();
                 }
             }
 
             int computerGuess = rand.nextInt(3);
             System.out.println(computerGuess);
-            if(action1 == computerGuess){
+            if(playerGuess == computerGuess){
                 System.out.println("Its a Draw!");
             }
-            else if(action1 == 0 && computerGuess == 2 || (action1 == 1 && computerGuess == 0) || (action1 == 2 && computerGuess == 1)){
+            else if(playerGuess == 0 && computerGuess == 2 || (playerGuess == 1 && computerGuess == 0) || (playerGuess == 2 && computerGuess == 1)){
                 System.out.println("You won!");
                 playerWins +=1;
             }
@@ -68,6 +66,15 @@ public class NewGame {
                 System.out.println("You lost!");
                 cpuWins +=1;
             }
+        }
+        if(playerWins > cpuWins){
+            System.out.println("You win!");
+        }
+        else if(cpuWins > playerWins){
+            System.out.println("You lose");
+        }
+        else{
+            System.out.println("Its a tie!");
         }
         System.out.println("You have scored: "+playerWins+ " and the bot scored: "+cpuWins + " with "+ draw+ " ties");
         System.out.println("'yes' or 'no' to play again!");
